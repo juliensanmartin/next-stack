@@ -1,19 +1,19 @@
 const sendQuery = require('./utils/_send-query');
 
-const GET_ALL_TODOS = `
-    query {
-        allTodos {
-        data {
-            _id,
-            text,
+const CREATE_TODO = `
+    mutation($text: String!) {
+        createTodo(data: {text: $text, completed: false}) {
+            _id
+            text
             completed
-        }
         }
     }
 `;
 
 export default async (req, res) => {
-  const { data, errors } = await sendQuery(GET_ALL_TODOS);
+  const { data, errors } = await sendQuery(CREATE_TODO, {
+    text: req.body.text,
+  });
 
   if (errors) {
     res.statusCode = 500;
@@ -23,7 +23,7 @@ export default async (req, res) => {
   } else {
     res.statusCode = 200;
     res.json({
-      body: { todos: data.allTodos.data },
+      body: { newTodo: data.createTodo },
     });
   }
 };
