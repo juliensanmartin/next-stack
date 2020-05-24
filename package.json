@@ -11,8 +11,18 @@
     "lint": "yarn lint:client && yarn lint:server",
     "format": "yarn prettier --write",
     "prettier": "prettier \"*.{js,html,jsx,json,yml,yaml,css,less,scss,ts,tsx,graphql}\"",
-    "validate": "yarn lint && yarn --list-different",
-    "precommit": "lint-staged && yarn validate"
+    "validate": "yarn lint && yarn --list-different"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn validate"
+    }
+  },
+  "lint-staged": {
+    "*.{js,html,jsx,json,yml,yaml,css,less,scss,ts,tsx,graphql}": [
+      "npx prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "axios": "^0.19.2",
