@@ -26,7 +26,10 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
+    "faunadb": "^2.14.1",
+    "js-cookie": "^2.2.1",
     "next": "9.4.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
