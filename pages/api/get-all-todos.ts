@@ -1,3 +1,5 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+
 const sendQuery = require('./utils/_send-query');
 
 const GET_ALL_TODOS = `
@@ -12,7 +14,7 @@ const GET_ALL_TODOS = `
     }
 `;
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, errors } = await sendQuery(GET_ALL_TODOS);
 
   if (errors) {

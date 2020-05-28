@@ -1,7 +1,8 @@
 import { query as q } from 'faunadb';
 import { serverClient, serializeFaunaCookie } from './utils/_fauna-auth';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function signuo(req, res) {
+export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = await req.body;
 
   try {
@@ -9,25 +10,8 @@ export default async function signuo(req, res) {
       throw new Error('Email and password must be provided.');
     }
 
-    let user;
-
-    try {
-      user = await serverClient.query(
-        q.Create(q.Collection('User'), {
-          credentials: { password },
-          data: { email },
-        })
-      );
-    } catch (error) {
-      throw new Error('User already exists.');
-    }
-
-    if (!user.ref) {
-      throw new Error('No ref present in create query response.');
-    }
-
     const loginRes = await serverClient.query(
-      q.Login(user.ref, {
+      q.Login(q.Match(q.Index('users_by_email'), email), {
         password,
       })
     );

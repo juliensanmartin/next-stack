@@ -1,8 +1,12 @@
 import { query as q } from 'faunadb';
 import cookie from 'cookie';
 import { faunaClient, FAUNA_SECRET_COOKIE } from './utils/_fauna-auth';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function logout(req, res) {
+export default async function logout(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   let cookieHeaders = '';
   if (req && req.headers && req.headers.cookie) {
     cookieHeaders = req.headers.cookie;

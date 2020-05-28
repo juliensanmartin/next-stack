@@ -10,7 +10,7 @@ export const logout = async () => {
   await fetch('/api/logout');
 
   // this is to allow withAuthSync to be notified of user logs out
-  window.localStorage.setItem('logout', Date.now());
+  window.localStorage.setItem('logout', Date.now().toString());
 
   Router.push('/login');
 };

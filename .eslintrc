@@ -3,8 +3,9 @@
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
+    "prettier/@typescript-eslint",
     "prettier/react"
   ],
   "rules": {
@@ -12,11 +13,13 @@
     "no-console": 1,
     "react/react-in-jsx-scope": 0,
     "react-hooks/rules-of-hooks": 2,
-    "react-hooks/exhaustive-deps": 1
+    "react-hooks/exhaustive-deps": 1,
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
