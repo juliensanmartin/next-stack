@@ -17,18 +17,14 @@ export default async function signup(
       throw new Error('Email and password must be provided.');
     }
 
-    let user;
+    const user: any = await serverClient.query(
+      q.Create(q.Collection('Users'), {
+        credentials: { password },
+        data: { email },
+      })
+    );
 
-    try {
-      user = await serverClient.query(
-        q.Create(q.Collection('User'), {
-          credentials: { password },
-          data: { email },
-        })
-      );
-    } catch (error) {
-      throw new Error('User already exists.');
-    }
+    console.log(user);
 
     if (!user.ref) {
       throw new Error('No ref present in create query response.');
@@ -45,10 +41,12 @@ export default async function signup(
     }
 
     const cookieSerialized = serializeFaunaCookie(loginRes.secret);
+    console.log(loginRes);
 
     res.setHeader('Set-Cookie', cookieSerialized);
     res.status(200).end();
   } catch (error) {
+    throw new Error('User already exists.');
     res.status(400).send(error.message);
   }
 }

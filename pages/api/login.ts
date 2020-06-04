@@ -25,6 +25,10 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Set-Cookie', cookieSerialized);
     res.status(200).end();
   } catch (error) {
-    res.status(400).send(error.message);
+    res
+      .status(400)
+      .send(
+        Object.values(error.requestResult.responseRaw).join('').split('"')[11]
+      );
   }
 }
