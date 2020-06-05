@@ -14,11 +14,11 @@ export const faunaClient = (secret) =>
     secret,
   });
 
-export const serializeFaunaCookie = (userSecret) => {
+export const serializeFaunaCookie = (userSecret, maxAge = 72576000) => {
   const cookieSerialized = cookie.serialize(FAUNA_SECRET_COOKIE, userSecret, {
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 72576000,
+    maxAge,
     httpOnly: true,
     path: '/',
   });

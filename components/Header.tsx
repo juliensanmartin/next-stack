@@ -1,7 +1,18 @@
+import { useContext } from 'react';
 import Link from 'next/link';
-import { logout } from '../utils/useLogoutSync';
+import AuthenticationContext from '../utils/AuthenticationContext';
 
-function Header(props) {
+function Header() {
+  const [, setAuthenticated] = useContext(AuthenticationContext);
+
+  const logout = async () => {
+    await fetch('/api/logout');
+    setAuthenticated(false);
+
+    // this is to allow withAuthSync to be notified of user logs out
+    window.localStorage.setItem('logout', Date.now().toString());
+  };
+
   return (
     <header>
       <nav>

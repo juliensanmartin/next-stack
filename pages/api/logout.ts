@@ -1,6 +1,10 @@
 import { query as q } from 'faunadb';
 import cookie from 'cookie';
-import { faunaClient, FAUNA_SECRET_COOKIE } from './utils/_fauna-auth';
+import {
+  faunaClient,
+  FAUNA_SECRET_COOKIE,
+  serializeFaunaCookie,
+} from './utils/_fauna-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function logout(
@@ -20,13 +24,7 @@ export default async function logout(
   // Invalidate secret (ie. logout from Fauna).
   await faunaClient(faunaSecret).query(q.Logout(false));
   // Clear cookie.
-  const cookieSerialized = cookie.serialize(FAUNA_SECRET_COOKIE, '', {
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: -1,
-    httpOnly: true,
-    path: '/',
-  });
+  const cookieSerialized = serializeFaunaCookie('', -1);
   res.setHeader('Set-Cookie', cookieSerialized);
   res.status(200).end();
 }
