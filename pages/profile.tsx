@@ -4,13 +4,12 @@ import { useLogoutSync } from '../utils/useLogoutSync';
 import { FAUNA_SECRET_COOKIE } from './api/utils/_fauna-auth';
 // import { profileApi } from './api/profile';
 
-const Profile = (props) => {
+function Profile() {
   useLogoutSync();
-  const { userId } = props;
 
   return (
     <>
-      <h1>Your user id is {userId}</h1>
+      <h1>Your user id is ...</h1>
 
       <style jsx>{`
         h1 {
@@ -19,7 +18,7 @@ const Profile = (props) => {
       `}</style>
     </>
   );
-};
+}
 
 // Profile.getInitialProps = async (ctx) => {
 //   if (typeof window === 'undefined') {

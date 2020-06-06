@@ -2,6 +2,10 @@ import { query as q } from 'faunadb';
 import { serverClient, serializeFaunaCookie } from './utils/_fauna-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+type LoginResponse = {
+  secret: string;
+};
+
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = await req.body;
 
@@ -10,7 +14,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       throw new Error('Email and password must be provided.');
     }
 
-    const loginRes = await serverClient.query(
+    const loginRes: LoginResponse = await serverClient.query(
       q.Login(q.Match(q.Index('users_by_email'), email), {
         password,
       })
