@@ -72,7 +72,9 @@ function Login() {
         />
 
         <button type="submit">Login</button>
-        <Link href="/signup">Create an account</Link>
+        <Link href="/signup" passHref>
+          <a className="blue-link">Create an account</a>
+        </Link>
 
         {userData.error && <p className="error">Error: {userData.error}</p>}
       </form>
@@ -100,6 +102,9 @@ function Login() {
         .error {
           margin: 0.5rem 0 0;
           color: brown;
+        }
+        .blue-link {
+          color: blue;
         }
       `}</style>
     </div>

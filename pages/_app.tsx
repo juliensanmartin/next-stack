@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps, router }) {
     if (redirectTo) {
       Router.push(redirectTo);
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, router.route]);
 
   return (
     <AuthenticatedContext.Provider value={[isAuthenticated, _setAuthenticated]}>
