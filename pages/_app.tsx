@@ -4,16 +4,13 @@ import Router from 'next/router';
 import AuthenticatedContext from '../utils/AuthenticationContext';
 import { useLogoutSync } from '../utils/useLogoutSync';
 
-const nonProtectedRoutes = ['Signup', 'Login'];
+const nonProtectedRoutes = ['/login', '/signup'];
 
-const needToRedirectedTo = (
-  isAuthenticated: boolean,
-  componentName: string
-) => {
+const needToRedirectedTo = (isAuthenticated: boolean, route: string) => {
   const isProtectedRouteNotAuthenticated: boolean =
-    !isAuthenticated && !nonProtectedRoutes.includes(componentName);
+    !isAuthenticated && !nonProtectedRoutes.includes(route);
   const isNonProtectedRouteAlreadyAuthenticated: boolean =
-    isAuthenticated && nonProtectedRoutes.includes(componentName);
+    isAuthenticated && nonProtectedRoutes.includes(route);
   if (isProtectedRouteNotAuthenticated) {
     return '/login';
   } else if (isNonProtectedRouteAlreadyAuthenticated) {
@@ -23,24 +20,21 @@ const needToRedirectedTo = (
   }
 };
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   useLogoutSync();
   const [isAuthenticated, _setAuthenticated] = useState(false);
 
   useEffect(() => {
-    const componentName = Component.prototype.constructor.name;
-    const redirectTo = needToRedirectedTo(isAuthenticated, componentName);
+    const redirectTo = needToRedirectedTo(isAuthenticated, router.route);
     if (redirectTo) {
       Router.push(redirectTo);
     }
-  }, [isAuthenticated, Component]);
-
-  const componentName = Component.prototype.constructor.name;
+  }, [isAuthenticated, router]);
 
   return (
     <AuthenticatedContext.Provider value={[isAuthenticated, _setAuthenticated]}>
       <Layout>
-        {needToRedirectedTo(isAuthenticated, componentName) ? (
+        {needToRedirectedTo(isAuthenticated, router.route) ? (
           'LOADING...'
         ) : (
           <Component {...pageProps} />

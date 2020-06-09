@@ -33,6 +33,15 @@ function Layout(props) {
           padding-left: 1rem;
           padding-right: 1rem;
         }
+        a,
+        a:link,
+        a:visited,
+        a:focus,
+        a:hover,
+        a:active {
+          color: white;
+          text-decoration: none;
+        }
       `}</style>
     </>
   );

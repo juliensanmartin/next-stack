@@ -47,10 +47,6 @@ function Header() {
         li:first-child {
           margin-left: auto;
         }
-        a {
-          color: #fff !important;
-          text-decoration: none;
-        }
         header {
           padding: 0.2rem;
           color: #fff;
