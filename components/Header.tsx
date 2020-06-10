@@ -47,11 +47,6 @@ function Header() {
         li:first-child {
           margin-left: auto;
         }
-        header {
-          padding: 0.2rem;
-          color: #fff;
-          background-color: #333;
-        }
       `}</style>
     </header>
   );

@@ -15,9 +15,7 @@ const signin = async (email, password) => {
 };
 
 function Login() {
-  const [_isAuthenticated, setAuthenticated] = useContext(
-    AuthenticationContext
-  );
+  const [, setAuthenticated] = useContext(AuthenticationContext);
 
   const [userData, setUserData] = useState({
     email: '',
