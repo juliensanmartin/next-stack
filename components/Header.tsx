@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Link from 'next/link';
-import AuthenticationContext from '../utils/AuthenticationContext';
+import AuthenticationContext from './AuthenticationContext';
 
 function Header() {
   const [, setAuthenticated] = useContext(AuthenticationContext);
@@ -30,6 +30,9 @@ function Header() {
             <Link href="/profile">Profile</Link>
           </li>
           <li>
+            <Link href="/todos">Todos</Link>
+          </li>
+          <li>
             <button onClick={logout}>Logout</button>
           </li>
         </ul>
@@ -40,6 +43,7 @@ function Header() {
           list-style: none;
           margin-left: 0;
           padding-left: 0;
+          align-items: center;
         }
         li {
           margin-right: 1rem;

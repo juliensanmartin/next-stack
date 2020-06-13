@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import Router from 'next/router';
-import AuthenticationContext from '../utils/AuthenticationContext';
+import AuthenticationContext from '../components/AuthenticationContext';
 
 function Signup() {
   const [, setAuthenticated] = useContext(AuthenticationContext);

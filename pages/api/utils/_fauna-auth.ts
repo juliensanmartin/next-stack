@@ -4,11 +4,13 @@ import cookie from 'cookie';
 export const FAUNA_SECRET_COOKIE = 'faunaSecret';
 
 // used in non-authed request (login, signup)
+// connect to fauna with my own secret
 export const serverClient = new faunadb.Client({
   secret: process.env.FAUNA_SERVER_SECRET,
 });
 
 // Used for any authed requests.
+// connect to fauna using user connected token secret
 export const faunaClient = (secret) =>
   new faunadb.Client({
     secret,

@@ -1,6 +1,6 @@
 import cookie from 'cookie';
 import Router from 'next/router';
-import { useLogoutSync } from '../utils/useLogoutSync';
+import { useLogoutSync } from '../components/useLogoutSync';
 import { FAUNA_SECRET_COOKIE } from './api/utils/_fauna-auth';
 // import { profileApi } from './api/profile';
 

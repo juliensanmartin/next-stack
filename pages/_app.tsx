@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import Router from 'next/router';
-import AuthenticatedContext from '../utils/AuthenticationContext';
-import { useLogoutSync } from '../utils/useLogoutSync';
+import AuthenticatedContext from '../components/AuthenticationContext';
+import { useLogoutSync } from '../components/useLogoutSync';
 
-const nonProtectedRoutes = ['/login', '/signup'];
+const nonProtectedRoutes = ['/login', '/signup', '/todos'];
 
 const needToRedirectedTo = (isAuthenticated: boolean, route: string) => {
   const isProtectedRouteNotAuthenticated: boolean =

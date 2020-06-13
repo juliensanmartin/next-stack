@@ -11,14 +11,18 @@ export const sunsetOrange = '#F95D58';
 export const lavenderIndigo = '#9744E6';
 export const blueJean = '#5CBBFB';
 
+export const mediumTurquoise = '#48d1cc';
+export const steelblue = '#4682b4';
+export const dodgerBlue = '#1e90ff';
+
 export const white = '#FFFFFF';
 export const black = '#000000';
 export const lightGrey = '#D3D3D3';
 export const extraLightGrey = '#EBECF0';
 
-export const primary = lavenderIndigo;
+export const primary = dodgerBlue;
 export const secondary = mediumCarmine;
 export const tertiary = chineseBronze;
 
-export const mainBackgroundColor = extraLightGrey;
-export const headerFooterBackgroundColor = sunsetOrange;
+export const mainBackgroundColor = mediumTurquoise;
+export const headerFooterBackgroundColor = steelblue;

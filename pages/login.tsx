@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import Link from 'next/link';
-import AuthenticationContext from '../utils/AuthenticationContext';
+import AuthenticationContext from '../components/AuthenticationContext';
 
 const signin = async (email, password) => {
   const response = await fetch('/api/login', {
