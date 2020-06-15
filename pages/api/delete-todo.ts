@@ -2,20 +2,19 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const sendQuery = require('./utils/_send-query');
 
-const GET_ALL_TODOS = `
-  query {
-    allTodos {
-      data {
-          _id,
-          text,
-          completed
-      }
+const DELETE_TODO = `
+  mutation($id: ID!) {
+    deleteTodo(id: $id) {
+      _id
     }
   }
 `;
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { data, errors } = await sendQuery(GET_ALL_TODOS);
+  const { id } = req.body;
+
+  const { data, errors } = await sendQuery(DELETE_TODO, { id });
+
   if (errors) {
     res.statusCode = 500;
     res.json({
@@ -24,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     res.statusCode = 200;
     res.json({
-      todos: data.allTodos.data,
+      body: { deletedTodo: data.deleteTodo },
     });
   }
 };

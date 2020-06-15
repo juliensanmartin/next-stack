@@ -22,7 +22,7 @@ export const extraLightGrey = '#EBECF0';
 
 export const primary = dodgerBlue;
 export const secondary = mediumCarmine;
-export const tertiary = chineseBronze;
+export const tertiary = bananaYellow;
 
 export const mainBackgroundColor = mediumTurquoise;
 export const headerFooterBackgroundColor = steelblue;
